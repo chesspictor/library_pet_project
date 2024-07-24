@@ -40,9 +40,13 @@ while start != 0:
     if start == 2:
         s = 'id удаляемой книги: '
         search = f.check_blank(s, True)
+        flag = False
         for book in data_class[:]:
             if book.id == search:
                 data_class.remove(book)
+                flag = True
+        if flag == False:
+            print(f'Книги с id{search} не существует')
     if start == 3:
         start_3 = True
         while start_3 != 0:
@@ -52,6 +56,7 @@ while start != 0:
             s += '0 - Выход\n'
             s += 'Введите число: '
             flag = False
+            found = False
             while not flag:
                 try:
                     start_3 = int(input(s))
@@ -63,12 +68,14 @@ while start != 0:
                             for book in data_class:
                                 if book.title == search:
                                     print(book.to_terminal())
+                                    found = True
                         if start_3 == 2:
                             message = 'Автор: '
                             search = f.check_blank(message)
                             for book in data_class:
                                 if book.author == search:
                                     print(book.to_terminal())
+                                    found = True
                         if start_3 == 3:
                             message = 'Год: '
                             search = f.check_blank(message,
@@ -76,6 +83,9 @@ while start != 0:
                             for book in data_class:
                                 if book.year == search:
                                     print(book.to_terminal())
+                                    found = True
+                        if found == False:
+                            print('Книг не найдено')
                     else:
                         print('От 0 до 3!')
                 except ValueError:
@@ -86,9 +96,13 @@ while start != 0:
     if start == 5:
         s = 'id книги: '
         search = f.check_blank(s, True)
+        flag = False
         for book in data_class:
             if book.id == search:
                 book.switch_status()
+                flag = True
+        if flag == False:
+            print(f'Книги с id{search} не существует')
 with open(f_path, 'w') as file:
     json.dump([book.to_dict() for book in data_class],
               file, indent = 4)

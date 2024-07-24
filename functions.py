@@ -5,7 +5,8 @@ def check_blank(message, numeric = False):
     if numeric == False:
         try: 
             rez = input(message)
-            if not bool(rez.strip()):
+            rez = rez.strip()
+            if not bool(rez):
                 raise ValueError('пустая строка')         
         except ValueError as e:
             print(f'Предупреждение: {e}')
