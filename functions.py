@@ -48,3 +48,12 @@ def start_screen():
         except ValueError:
             print('Нечисловое значение!')
     return x
+
+#является ли строка подстрокой
+def substring(s_min, s_max):
+    s_min = s_min.lower()
+    s_max = s_max.lower()
+    if s_min in s_max:
+        return True
+    else:
+        return False

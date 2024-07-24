@@ -50,7 +50,7 @@ while start != 0:
     if start == 3:
         start_3 = True
         while start_3 != 0:
-            s = '1 - Поиск по названию\n'
+            s = '\n1 - Поиск по названию\n'
             s += '2 - Поиск по автору\n'
             s += '3 - Поиск по году\n'
             s += '0 - Выход\n'
@@ -66,14 +66,16 @@ while start != 0:
                             message = 'Название: '
                             search = f.check_blank(message)
                             for book in data_class:
-                                if book.title == search:
+                                #if book.title == search:
+                                if f.substring(search, book.title):
                                     print(book.to_terminal())
                                     found = True
                         if start_3 == 2:
                             message = 'Автор: '
                             search = f.check_blank(message)
                             for book in data_class:
-                                if book.author == search:
+                                #if book.author == search:
+                                if f.substring(search, book.author):
                                     print(book.to_terminal())
                                     found = True
                         if start_3 == 3:
@@ -84,6 +86,8 @@ while start != 0:
                                 if book.year == search:
                                     print(book.to_terminal())
                                     found = True
+                        if start_3 == 0:
+                            found = True
                         if found == False:
                             print('Книг не найдено')
                     else:
